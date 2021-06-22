@@ -1,10 +1,11 @@
 import { Home } from "./pages/Home";
+import { NewRom } from "./pages/NewRom";
 
 import './styles/global.scss'
 
 function App() {
   return (
-    <Home/>
+    <NewRom/>
   );
 }
 export default App;
