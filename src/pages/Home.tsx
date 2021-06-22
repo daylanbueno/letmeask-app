@@ -1,11 +1,18 @@
+
+import { useHistory } from 'react-router-dom'
+
 import inlustrationImg from '../asserts/images/illustration.svg'
 import googleIconImg from '../asserts/images/google-icon.svg'
 import logoImg from '../asserts/images/logo.svg'
 
 import '../styles/auth.scss'
+
 import { Button } from '../components/Button'
 
+
 export function Home () {
+    const  history = useHistory()
+
     return (
         <div id="paga-auth">
             <aside>
@@ -26,7 +33,7 @@ export function Home () {
                             type="text"
                             placeholder="Digite o código da sala"
                         />
-                        <Button type="submit">Entra na sala</Button>
+                        <Button onClick={() =>  history.push('/rooms/new')} type="submit">Entra na sala</Button>
                     </form>
                 </div>
                 

@@ -1,8 +1,11 @@
+
+import { Link } from 'react-router-dom'
+
 import inlustrationImg from '../asserts/images/illustration.svg'
 import logoImg from '../asserts/images/logo.svg'
+import { Button } from '../components/Button'
 
 import '../styles/auth.scss'
-import { Button } from '../components/Button'
 
 export function NewRom () {
     return (
@@ -25,7 +28,7 @@ export function NewRom () {
                         />
                         <Button type="submit">Cria sala</Button>
                     </form>
-                    <p>Quer entrar em uma sala existente? <a href="#">clique aqui</a> </p>
+                    <p>Quer entrar em uma sala existente? <Link to="/">clique aqui</Link> </p>
                 </div>
                 
             </main>
