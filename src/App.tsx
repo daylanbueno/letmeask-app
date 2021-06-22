@@ -1,6 +1,10 @@
+import { Home } from "./pages/Home";
+
+import './styles/global.scss'
+
 function App() {
   return (
-    <h1>Hellow world</h1>
+    <Home/>
   );
 }
 export default App;
