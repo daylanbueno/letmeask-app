@@ -1,3 +1,4 @@
+import { FormEvent, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import inlustrationImg from '../asserts/images/illustration.svg'
@@ -8,17 +9,37 @@ import '../styles/auth.scss'
 
 import { Button } from '../components/Button'
 import { useAuth } from '../hooks/Auth'
+import { database } from '../services/firebase'
+
 
 export function Home () {
     const  history = useHistory()
     const { user, signInWithGoogle } = useAuth()
 
-    function handleCreateRom() {
+    const [roomCode, setRoomCode] = useState('')
+
+    async function handleCreateRoom() {
         if(!user) {
-            signInWithGoogle()
-            return 
+          await signInWithGoogle()
+        } 
+        history.push(`/rooms/new`)
+    }
+
+    async function handleJoinRoom(event: FormEvent) {
+        event.preventDefault()
+
+        if (roomCode.trim() === '')  {
+            return;
         }
-        history.push('/rooms/new')
+
+        const roomRef = await database.ref(`/rooms/${roomCode}`).get()
+
+        if(!roomRef.exists()) {
+            alert('Room does not exists.')
+            return
+        }
+
+        history.push(`/rooms/${roomRef.key}`)
     }
 
     return (
@@ -32,17 +53,18 @@ export function Home () {
                 <h1>{user?.name}</h1>
                 <div>
                     <img src={logoImg} alt="Letmeask" />
-                    <button onClick={() => signInWithGoogle()} className="create-rom"> 
+                    <button onClick={() => handleCreateRoom()} className="create-rom"> 
                         <img src={googleIconImg} alt="Logo do google" />
                         Crie sua sala com o google
                     </button>
                     <div className="separator">ou entre em uma sala </div>
-                    <form>
+                    <form onSubmit={handleJoinRoom}>
                         <input 
+                            onChange={event => setRoomCode(event.target.value)}
                             type="text"
                             placeholder="Digite o código da sala"
                         />
-                        <Button onClick={() => handleCreateRom()} type="submit">Entra na sala</Button>
+                        <Button type="submit">Entra na sala</Button>
                     </form>
                 </div>
                 
