@@ -70,7 +70,7 @@
             align-items: center;
             justify-content: space-between;
 
-            span {
+            span > {
                 font-family: 'Roboto', sans-serif;
                 font-style: normal;
                 font-weight: 500;
@@ -89,6 +89,28 @@
                     cursor: pointer;
                 }
             }
+        }
+    }
+
+    .user-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        span {
+            font-family: "Roboto";
+            font-size: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            color: #29292E;
+            margin-left: 8px;
         }
     }
 }
