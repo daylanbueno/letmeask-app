@@ -16,6 +16,16 @@
         margin-top: 8px;
     }
 
+    &.highlighted {
+        background: #f4f0ff;
+        border: 1px solid #835afd;
+    }
+
+    &.answered{
+        background: #DBDCDE;
+
+    }
+
     p {
         margin: 24px 24px;
         color: #29292e;
@@ -45,6 +55,36 @@
                 line-height: 16px;
                 color: #737380;
                 margin-left: 8px;
+            }
+        }
+
+        > div {
+            display: flex;
+            gap: 16px;
+        }
+
+        button {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+
+            &.like-button {
+                display: flex;
+                align-items: flex-end;
+                color: #737380; 
+
+                gap: 8px;
+
+                &.liked {
+                    color: #835afd;
+                    svg path {
+                        stroke: #835afd;
+                    }
+                }
+
+                &:hover {
+                    filter: brightness(0.5);
+                }
             }
         }
     }
