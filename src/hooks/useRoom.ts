@@ -41,7 +41,6 @@ export function useRoom (roomId: string ) {
         const roomRef = database.ref(`rooms/${roomId}`)
         roomRef.on('value', room => {
             const databaseRoom = room.val() 
-            console.log('databaseRoom',databaseRoom)
             const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {}
             const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
                 return {
@@ -57,8 +56,6 @@ export function useRoom (roomId: string ) {
             setTitle(databaseRoom.title)
             setQuestions(parsedQuestions)
         })
-
-        // return roomRef.off('value')
 
     },[roomId, user?.id])
     
