@@ -1,5 +1,6 @@
 import { useState,FormEvent } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import logoImg from '../asserts/images/logo.svg'
 import { Button } from '../components/Button'
@@ -16,6 +17,7 @@ type ParamProps = {
 }
 
 export function Room () {
+    const history = useHistory()
     const { user } = useAuth()
     const  params = useParams<ParamProps>()
     const [newQuestion, setNewQuestion] = useState('')
@@ -30,7 +32,8 @@ export function Room () {
         }
 
         if(!user) {
-            throw  new Error('You must be logged in')
+            toast.error('Você deve está logado.')
+            return
         }
         
         const question = {
@@ -44,9 +47,7 @@ export function Room () {
         }
 
         await database.ref(`rooms/${roomId}/questions`).push(question)
-
         setNewQuestion('')
-
     }
 
     async function handleLikeQuestion (questionId: string, likeId: string | undefined) {
@@ -55,7 +56,6 @@ export function Room () {
         } else {
             await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
                 authorId: user?.id,
-    
             })
         }
        
@@ -65,7 +65,7 @@ export function Room () {
         <div id="page-room">
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="LetmeasK" />
+                    <img onClick={() => history.push('/')} src={logoImg} alt="LetmeasK" />
                     <RoomCode code={roomId}/>
                 </div>
             </header>

@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify'
 import copyImg from '../asserts/images/copy.svg'
 
 import '../styles/room-code.scss'
@@ -10,7 +11,7 @@ export function RoomCode(props: RoomCodeProps) {
 
     function copyRoomCodeToClipboard() {
         navigator.clipboard.writeText(props.code).then(() => {
-            alert('codigo copiado')
+            toast.success(`${props.code} copiado`)
         })
     }
 
