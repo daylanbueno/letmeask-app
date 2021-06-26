@@ -11,7 +11,8 @@ import { Question } from '../components/Question'
 import { RoomCode } from '../components/RoomCode'
 import { useRoom } from '../hooks/useRoom'
 
-import {  ModelConfirmationDelete } from './ModelConfirmationDelete'
+import { ModelConfirmationDelete } from '../components/ModelConfirmationDelete'
+import { ModelConfirmationEndRoom } from '../components/ModelConfirmationEndRoom'
 
 import '../styles/room.scss'
 import { database } from '../services/firebase'
@@ -31,6 +32,7 @@ export function AdminRoom () {
     const  params = useParams<ParamProps>()
     const roomId = params.id
     const [open, setOpen] = useState(false)
+    const [openEncerraSala, openSetEncerraSala] = useState(false)
     const [selectedQuestion, setSelectedQuestion] = useState('')
 
 
@@ -86,7 +88,7 @@ export function AdminRoom () {
                     <img onClick={() => history.push('/')} src={logoImg} alt="LetmeasK" />
                     <div>
                         <RoomCode code={roomId}/>
-                        <Button outlined onClick={handleEndRoom}>Encerra sala</Button>
+                        <Button outlined onClick={() => openSetEncerraSala(true)}>Encerra sala</Button>
                     </div>
                 </div>
             </header>
@@ -131,7 +133,12 @@ export function AdminRoom () {
                 onRequestClose={() => setOpen(false)}
                 callbackSucess={()=> handleDeleteQuestion()}
               />
-       
+
+            <ModelConfirmationEndRoom 
+                isOpen={openEncerraSala}
+                onRequestClose={() => openSetEncerraSala(false)}
+                callbackSucess={()=> handleEndRoom()}
+             />
         </>
     )
 }

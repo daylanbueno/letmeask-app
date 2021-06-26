@@ -57,7 +57,6 @@ export function Home () {
                 <p>Tire as dúvidas da sua audiência em tempo real</p>
             </aside>
             <main className="main-content">
-                <h1>{user?.name}</h1>
                 <div>
                     <img src={logoImg} alt="Letmeask" />
                     <button onClick={() => handleCreateRoom()} className="create-rom"> 

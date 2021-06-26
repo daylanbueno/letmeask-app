@@ -2,7 +2,7 @@
 import delteImg from '../asserts/images/delete.svg'
 import Modal from 'react-modal'
 
-import '../styles/modal.scss'
+import '../styles/confirmation.scss'
 import { styles } from '../utils/stylesModal'
 
 
@@ -12,7 +12,7 @@ type propsType ={
     callbackSucess: () => void
 }
 
-export function  ModelConfirmationDelete (props: propsType) {
+export function  ModelConfirmationEndRoom (props: propsType) {
     return (
         <Modal
             style={styles}
@@ -20,13 +20,13 @@ export function  ModelConfirmationDelete (props: propsType) {
             onRequestClose={props.onRequestClose}
             shouldCloseOnOverlayClick={false}
             >
-            <div className="content-modal">
-                <img src={delteImg} alt="Excluir pergunta" />
-                <h2>Excluir pergunta</h2>
-                <span>Tem certeza que deseja excluir esta pergunta?</span>
+            <div className="content-modal-confirmacao">
+                <img  src={delteImg} alt="Excluir pergunta" />
+                <h2>Encerrar sala</h2>
+                <span>tem certea que você deseja encerrar esta sala?</span>
                 <div className="actions">
                     <button  onClick={props.onRequestClose}>Cancelar</button>
-                    <button onClick={props.callbackSucess} className="tbn-confirmation">Sim, excluir</button>
+                    <button onClick={props.callbackSucess} className="tbn-confirmation">Sim, encerrar</button>
                 </div>
             </div> 
         </Modal>
