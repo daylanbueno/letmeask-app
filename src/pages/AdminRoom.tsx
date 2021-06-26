@@ -11,7 +11,7 @@ import { Question } from '../components/Question'
 import { RoomCode } from '../components/RoomCode'
 import { useRoom } from '../hooks/useRoom'
 
-import {  ModalConfirmacaoDelete } from '../pages/ModalConfirmacaoDelete'
+import {  ModelConfirmationDelete } from './ModelConfirmationDelete'
 
 import '../styles/room.scss'
 import { database } from '../services/firebase'
@@ -30,7 +30,7 @@ export function AdminRoom () {
     const history = useHistory()
     const  params = useParams<ParamProps>()
     const roomId = params.id
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
     const [selectedQuestion, setSelectedQuestion] = useState('')
 
 
@@ -126,7 +126,7 @@ export function AdminRoom () {
                 })}
             </main>
              </div>
-              <ModalConfirmacaoDelete 
+              <ModelConfirmationDelete 
                 isOpen={open}
                 onRequestClose={() => setOpen(false)}
                 callbackSucess={()=> handleDeleteQuestion()}

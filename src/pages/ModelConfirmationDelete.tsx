@@ -3,27 +3,8 @@ import delteImg from '../asserts/images/delete.svg'
 import Modal from 'react-modal'
 
 import '../styles/modal.scss'
+import { styles } from '../utils/stylesModal'
 
-const customStyles = {
-    content: {
-      background: '#F8F8F8',
-      borderRadius: 8,
-      maxWidth: 800,
-      width: 800,
-      height: 360,
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-
-      display: 'flex',
-      alignItems: 'center',
-      JustContent: 'center',
- 
-    },
-  };
 
 type propsType ={
     isOpen: boolean,
@@ -31,10 +12,10 @@ type propsType ={
     callbackSucess: () => void
 }
 
-export function  ModalConfirmacaoDelete (props: propsType) {
+export function  ModelConfirmationDelete (props: propsType) {
     return (
         <Modal
-            style={customStyles}
+            style={styles}
             isOpen={props.isOpen}
             onRequestClose={props.onRequestClose}
             shouldCloseOnOverlayClick={false}
