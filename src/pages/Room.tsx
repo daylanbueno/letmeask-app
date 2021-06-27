@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import logoImg from '../asserts/images/logo.svg'
+import empytiQuestions from '../asserts/images/empty-questions.svg'
 import { Button } from '../components/Button'
 import { Question } from '../components/Question'
 import { RoomCode } from '../components/RoomCode'
@@ -118,6 +119,18 @@ export function Room () {
                  
                   </Question>
                 ))}
+
+                <div className="empty-questions">
+                    {questions.length === 0 && (
+                        <div className="questions">
+                            <img src={empytiQuestions} alt="Sem questões" />
+                            <h2>Nenhuma Questão por aqui...</h2>
+                            <span>Faça o seu login e seja a primeira pessoa a fazer uma pergunta!</span>
+                        </div>
+                    )}
+                </div>
+
+              
             </main>
         </div>
     )
